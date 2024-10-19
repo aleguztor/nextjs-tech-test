@@ -32,7 +32,10 @@ export default function Home() {
               ? "!rounded-full !bg-transparent !p-0 hover:!bg-[gold]"
               : "!rounded-full !bg-white !p-0 hover:!bg-gray-300"
           }
-          onClick={() => signIn("github")}
+          onClick={(e) => {
+            e.preventDefault()
+            signIn("github")
+          }}
         >
           <div className="flex flex-col items-center">
             <img width={40} height={40} src="/logos/github.png" />

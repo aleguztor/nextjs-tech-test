@@ -37,7 +37,14 @@ export function Navbar() {
         </div>
         <div className="flex h-[100%] items-center gap-2">
           {!session ? (
-            <button onClick={() => signIn()}>Sign in</button>
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                signIn()
+              }}
+            >
+              Sign in
+            </button>
           ) : (
             <button onClick={() => signOut()}>sign Out</button>
           )}
