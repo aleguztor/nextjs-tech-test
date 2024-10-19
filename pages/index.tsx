@@ -1,5 +1,6 @@
-import Image from "next/image";
+import { signIn, useSession } from "next-auth/react";
 import localFont from "next/font/local";
+import Image from "next/image";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,7 +14,16 @@ const geistMono = localFont({
 });
 
 export default function Home() {
+    const { data: session } = useSession();
+
   return (
+    !session ? (
+        <>
+          <p>Not signed in</p>
+          <br />
+          <button onClick={() => signIn()}>Sign in</button>
+        </>
+      ) :
     <div
       className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
     >
