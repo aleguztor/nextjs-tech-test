@@ -20,6 +20,7 @@ export const authOptions = {
     }),
   ],
   adapter: PrismaAdapter(prisma),
+
   secret: process.env.NEXTAUTH_SECRET,
   // pages: {
   //   signIn: `/login`,
@@ -27,26 +28,27 @@ export const authOptions = {
   //   error: "/login", // Error code passed in query string as ?error=
   // },
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-        username: user.name,
-      },
-    }),
-
-    async jwt({ token, account, profile }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
-      if (account) {
-        token.email = profile?.email
-        token.accessToken = account.access_token
-        token.id = account.id_token
+    // session: ({ session, user }) => ({
+    //   ...session,
+    //   user: {
+    //     ...session.user,
+    //     id: user.id,
+    //     username: user.name,
+    //   },
+    // }),
+    async session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+        },
       }
-      console.log("LLEGA AQUI")
-      console.log(token)
+    },
+    async jwt({ user, token }) {
+      console.log()
+      if (user) token.sub = user.id
       return token
     },
   },
-} as NextAuthOptions
+} satisfies NextAuthOptions
 export default NextAuth(authOptions)
