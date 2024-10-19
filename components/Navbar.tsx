@@ -9,19 +9,22 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="flex h-10 justify-between pl-2 pr-2">
+      <nav className="flex items-center justify-between pb-4 pl-2 pr-2 pt-4 shadow-lg">
         {session ? (
           <div className="flex h-[100%] items-center gap-2">
-            <Link className="h-min" href="/profile">
-              Profile
-            </Link>
-            <Link className="h-min" href="/">
+            <Link className="hover: h-min font-semibold" href="/">
               Home
+            </Link>
+            <Link className="hover: h-min font-semibold" href="/products">
+              Products
+            </Link>
+            <Link className="h-min font-semibold" href="/profile">
+              Profile
             </Link>
           </div>
         ) : null}
-        <div className="flex h-[100%] items-center gap-2">
-          <div>
+        <div>
+          <div className="flex h-[100%] items-center gap-2">
             {themes.map((theme) => (
               <button
                 key={theme.name}

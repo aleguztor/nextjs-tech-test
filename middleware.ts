@@ -4,7 +4,12 @@ import { NextResponse } from "next/server"
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(req: NextRequest) {
-  const session = await getToken({ req, secret: process.env.NEXTAUTH_URL })
+  const { nextUrl, cookies } = req
+
+  console.log(cookies.get("next-auth.session-token")?.value)
+
+  const session = cookies.get("next-auth.session-token")?.value
+  console.log(session)
   if (!session) {
     return NextResponse.redirect(new URL("/", req.url))
   }

@@ -76,3 +76,35 @@ model Authenticator {
 
     @@id([userId, credentialID])
 }
+
+model Producto {
+    id_producto  Int               @id @default(autoincrement())
+    nombre       String
+    precio       Float
+    id_categoria Int
+    categoria    CategoriaProducto @relation(fields: [id_categoria], references: [id_categoria])
+    ventas       Venta[]
+}
+
+model CategoriaProducto {
+    id_categoria Int        @id @default(autoincrement())
+    nombre       String
+    productos    Producto[]
+}
+
+model Tienda {
+    id_tienda Int     @id @default(autoincrement())
+    nombre    String
+    ubicacion String
+    ventas    Venta[]
+}
+
+model Venta {
+    id_venta    Int      @id @default(autoincrement())
+    id_producto Int
+    id_tienda   Int
+    cantidad    Int
+    fecha_venta DateTime
+    producto    Producto @relation(fields: [id_producto], references: [id_producto])
+    tienda      Tienda   @relation(fields: [id_tienda], references: [id_tienda])
+}

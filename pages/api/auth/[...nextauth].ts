@@ -19,7 +19,7 @@ export const authOptions = {
       },
     }),
   ],
-    adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   // pages: {
   //   signIn: `/login`,
@@ -35,13 +35,7 @@ export const authOptions = {
         username: user.name,
       },
     }),
-    async redirect({ url, baseUrl }) {
-      // Allows relative callback URLs
-      if (url.startsWith("/")) return `${baseUrl}${url}`
-      // Allows callback URLs on the same origin
-      else if (new URL(url).origin === baseUrl) return url
-      return baseUrl
-    },
+
     async jwt({ token, account, profile }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
@@ -49,9 +43,10 @@ export const authOptions = {
         token.accessToken = account.access_token
         token.id = account.id_token
       }
+      console.log("LLEGA AQUI")
+      console.log(token)
       return token
     },
   },
 } as NextAuthOptions
 export default NextAuth(authOptions)
-
