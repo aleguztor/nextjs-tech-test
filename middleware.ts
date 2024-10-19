@@ -6,9 +6,12 @@ import { NextResponse } from "next/server"
 export async function middleware(req: NextRequest) {
   const { nextUrl, cookies } = req
 
-  console.log(cookies.get("next-auth.session-token")?.value)
+  const authObtain =
+    process.env.NODE_ENV === "production"
+      ? "__Secure-next-auth.session-token"
+      : "next-auth.session-token"
 
-  const session = cookies.get("next-auth.session-token")?.value
+  const session = cookies.get(authObtain)?.value
   console.log(session)
   if (!session) {
     return NextResponse.redirect(new URL("/", req.url))
@@ -18,5 +21,5 @@ export async function middleware(req: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/profile"],
+  matcher: ["/profile", "/products"],
 }
