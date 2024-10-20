@@ -1,6 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
+# INSTRUCTION
 
 First, run the development server:
 
@@ -14,14 +12,69 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir http://localhost:3000 con el navegador para ver el resultado.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Tests
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+# Para iniciar los tests tendremos que ejecutar
+npm run cypress:open
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Deployed on Netlify
+# Architecture Overview
 
 https://next-js-test-linkdin.netlify.app/
+
+### Api
+
+- GET /api/ventas?year=xxxx
+
+Ejemplo: https://next-js-test-linkdin.netlify.app/api/ventas?year=2022
+
+- GET /api/productos/paginated?page=xx&limit=xx
+
+Ejemplo: https://next-js-test-linkdin.netlify.app/api/productos/paginated?page=1&limit=10
+
+# Architecture Overview de la App
+
+## 1. Frontend: Next.js
+
+- **Framework**: Next.js (React-based).
+- **Funcionalidades clave**:
+  - Interfaz de usuario construida con React.
+  - Soporte de SSR (Server-Side Rendering) y SSG (Static Site Generation).
+  - Manejo de rutas dinámicas y estáticas.
+
+## 2. Autenticación: NextAuth.js
+
+- **Método de login**: Autenticación con GitHub.
+- **Flujo de autenticación**:
+  - Los usuarios inician sesión a través de GitHub OAuth.
+  - NextAuth gestiona las sesiones y tokens.
+- **Seguridad**: Manejo seguro de sesiones con cookies y cifrado.
+
+## 3. Backend/API: Prisma + PostgreSQL
+
+- **ORM**: Prisma para interactuar con la base de datos.
+- **Base de datos**: PostgreSQL.
+  - PostgreSQL está alojado en **Vercel**.
+  - Almacena información de ventas.
+- **API**: Endpoints manejados mediante API Routes de Next.js, con consultas gestionadas por Prisma.
+
+## 4. Testing: React Testing Library
+
+- **Component Testing**: Se realizan pruebas de componentes individuales usando .
+- **End-to-End (E2E) Testing**: Pruebas completas del flujo de usuario desde el frontend hasta el backend.
+- Uso de **React Testing Library**.
+
+## 5. Infraestructura y despliegue
+
+- **Despliegue**: La aplicación está desplegada en **Netlify**, aprovechando el CI/CD y la integración automatizada.
+- **Base de datos**: PostgreSQL alojado en **Vercel**, lo que facilita la integración con el backend.
+
+## 6. Flujo de Datos
+
+- El usuario accede a la interfaz frontend en Netlify.
+- Si no está autenticado, se redirige a GitHub para login.
+- Tras autenticarse, NextAuth gestiona la sesión y Prisma interactúa con PostgreSQL en Vercel para las operaciones CRUD.
+- Los datos se presentan en la interfaz mediante los componentes React de Next.js.

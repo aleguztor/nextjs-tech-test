@@ -61,6 +61,13 @@ h6 {
   button:hover {
     background-color: gray;
   }
+  input {
+    background-color: black;
+    color: white;
+  }
+  input::placeholder {
+    color: gainsboro;
+  }
 }
 
 body {
@@ -101,6 +108,13 @@ body {
     background-color: white;
     color: black;
   }
+  input {
+    background-color: white;
+    color: black;
+  }
+  input::placeholder {
+    color: gray;
+  }
 }
 
 [data-theme="gold"] {
@@ -128,5 +142,12 @@ body {
   button:hover {
     background-color: rgb(187, 159, 0);
     color: gold;
+  }
+  input {
+    background-color: gold;
+    color: rgb(126, 107, 0);
+  }
+  input::placeholder {
+    color: rgb(126, 107, 0);
   }
 }

@@ -50,7 +50,7 @@ export default function Home() {
       </div>
     </>
   ) : (
-    <div className="containerApp">
+    <div className="containerApp relative">
       <GraficoVentas />
     </div>
   )

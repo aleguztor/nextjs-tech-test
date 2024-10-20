@@ -92,7 +92,20 @@ const GraficoVentas = () => {
         <option value={2022}>2022</option>
         <option value={2021}>2021</option>
       </select>
-      {loading ? <p>Cargando...</p> : <canvas ref={canvasRef} />}
+      {loading ? (
+        <p>Cargando...</p>
+      ) : (
+        <>
+          {window.innerHeight}
+          <canvas
+            style={{
+              maxHeight: window.innerHeight - 305 + "px", // Establece la altura máxima
+              width: "100%", // Ajusta el ancho según sea necesario
+            }}
+            ref={canvasRef}
+          />
+        </>
+      )}
     </div>
   )
 }

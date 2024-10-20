@@ -9,7 +9,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="flex items-center justify-between pb-4 pl-2 pr-2 pt-4 shadow-lg">
+      <nav className="flex flex-col flex-wrap items-center justify-between gap-2 pb-4 pl-[120px] pr-[120px] pt-4 shadow-lg sm:flex-row">
         {session ? (
           <div className="flex h-[100%] items-center gap-2">
             <Link className="hover: h-min font-semibold" href="/">
@@ -23,19 +23,17 @@ export function Navbar() {
             </Link>
           </div>
         ) : null}
-        <div>
-          <div className="flex h-[100%] items-center gap-2">
-            {themes.map((theme) => (
-              <button
-                key={theme.name}
-                onClick={() => setTheme(theme.name.toLowerCase())}
-              >
-                {theme.name}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="flex h-[100%] items-center gap-2">
+
+        <div className="flex h-[100%] flex-wrap items-center justify-center gap-2">
+          {themes.map((theme) => (
+            <button
+              key={theme.name}
+              onClick={() => setTheme(theme.name.toLowerCase())}
+            >
+              {theme.name}
+            </button>
+          ))}
+
           {!session ? (
             <button
               role="signInButon"
@@ -47,7 +45,12 @@ export function Navbar() {
               Sign in
             </button>
           ) : (
-            <button onClick={() => signOut()}>Sign out</button>
+            <button
+              className="!bg-red-300 !text-white hover:!bg-red-600"
+              onClick={() => signOut()}
+            >
+              Sign out
+            </button>
           )}
         </div>
       </nav>

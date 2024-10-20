@@ -10,9 +10,7 @@
     "postinstall": "prisma generate",
     "cypress:open": "cypress open",
     "component": "cypress open --component",
-    "component:headless": "cypress run --component",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "component:headless": "cypress run --component"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.1",
