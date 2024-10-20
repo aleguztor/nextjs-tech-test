@@ -9,6 +9,10 @@ import "./commands"
 
 declare global {
   namespace Cypress {
+    interface Cypress {
+      env(key: "EMAIL_GITHUB_TEST"): string
+      env(key: "PASS_GITHUB_TEST"): string
+    }
     interface Chainable {
       mount: typeof mount
     }

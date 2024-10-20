@@ -3,6 +3,7 @@
     "next/core-web-vitals",
     "next/typescript",
     "plugin:prettier/recommended",
+    "plugin:testing-library/react",
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks"

@@ -38,6 +38,7 @@ export function Navbar() {
         <div className="flex h-[100%] items-center gap-2">
           {!session ? (
             <button
+              role="signInButon"
               onClick={(e) => {
                 e.preventDefault()
                 signIn()
@@ -46,7 +47,7 @@ export function Navbar() {
               Sign in
             </button>
           ) : (
-            <button onClick={() => signOut()}>sign Out</button>
+            <button onClick={() => signOut()}>Sign out</button>
           )}
         </div>
       </nav>

@@ -12,16 +12,15 @@ export default defineConfig({
     baseUrl: "http://localhost:3000",
     chromeWebSecurity: false,
     env: {
-      GITHUB_USER: "kihacaoficial@gmail.com",
-      GITHUB_PW: "aleelcabron12",
-      COOKIE_NAME: "next-auth.session-token",
-      SITE_NAME: "http://localhost:3000",
+      SITE_NAME: process.env.NEXTAUTH_URL,
+      EMAIL_GITHUB_TEST: process.env.EMAIL_GITHUB_TEST,
+      PASS_GITHUB_TEST: process.env.PASS_GITHUB_TEST,
     },
     setupNodeEvents(on, config) {
       on("task", {
         GitHubSocialLogin,
       })
     },
-    supportFile: false,
+    supportFile: "cypress/support/index.ts",
   },
 })
