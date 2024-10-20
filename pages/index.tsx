@@ -26,6 +26,7 @@ export default function Home() {
         </h2>
         <h5>Welcome to the tech test!</h5>
         <p>You can sign by github</p>
+        <a href="http://localhost:3000/api/auth/signin/github">a</a>
         <button
           className={
             theme === "gold"

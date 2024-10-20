@@ -1,6 +1,6 @@
 import { signOut, useSession } from "next-auth/react"
 
-export default function Page() {
+export default function Profile() {
   const { data } = useSession()
   return (
     <div className="containerApp">

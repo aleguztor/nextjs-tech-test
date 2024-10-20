@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "types": ["cypress", "@testing-library/cypress", "node"],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "target": "ES5",
+    "strict": false,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
+    // "paths": {
+    //   "@/*": ["./*"]
+    // }
+  },
+
+  "include": ["**/*.ts", "**/*.tsx", "next_env.d.ts"],
+  "exclude": ["node_modules"]
+}
