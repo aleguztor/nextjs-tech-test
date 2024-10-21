@@ -1,4 +1,4 @@
-import { useNotes } from "@/hook/useNotes"
+import { useNotes } from "@/store/useNotes"
 import { Chart, registerables } from "chart.js"
 import { useEffect, useRef, useState } from "react"
 

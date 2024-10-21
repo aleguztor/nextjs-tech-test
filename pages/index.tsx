@@ -1,5 +1,5 @@
 import GraficoVentas from "@/components/GraficSells"
-import { useNotes } from "@/hook/useNotes"
+import { useNotes } from "@/store/useNotes"
 import { signIn, useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"

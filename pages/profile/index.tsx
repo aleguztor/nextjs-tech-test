@@ -1,4 +1,4 @@
-import { useNotes } from "@/hook/useNotes"
+import { useNotes } from "@/store/useNotes"
 import { signOut, useSession } from "next-auth/react"
 
 export default function Profile() {
