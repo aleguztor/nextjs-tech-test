@@ -1,19 +1,6 @@
 import GraficoVentas from "@/components/GraficSells"
-import { signIn, signOut, useSession } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
-import localFont from "next/font/local"
-import Image from "next/image"
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-})
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-})
 
 export default function Home() {
   const { data: session } = useSession()
@@ -26,7 +13,6 @@ export default function Home() {
         </h2>
         <h5>Welcome to the tech test!</h5>
         <p>You can sign by github</p>
-        <a href="http://localhost:3000/api/auth/signin/github">a</a>
         <button
           className={
             theme === "gold"
@@ -50,7 +36,7 @@ export default function Home() {
       </div>
     </>
   ) : (
-    <div className="containerApp relative">
+    <div className="containerApp">
       <GraficoVentas />
     </div>
   )

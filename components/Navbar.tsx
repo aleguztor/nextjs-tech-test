@@ -5,7 +5,7 @@ const themes = [{ name: "Light" }, { name: "Dark" }, { name: "Gold" }]
 
 export function Navbar() {
   const { data: session } = useSession()
-  const { resolvedTheme, setTheme } = useTheme()
+  const { setTheme } = useTheme()
 
   return (
     <>
@@ -16,15 +16,20 @@ export function Navbar() {
               Home
             </Link>
             <Link className="hover: h-min font-semibold" href="/products">
-              Products
+              Productos
             </Link>
             <Link className="h-min font-semibold" href="/profile">
-              Profile
+              Perfil
             </Link>
           </div>
         ) : null}
 
-        <div className="flex h-[100%] flex-wrap items-center justify-center gap-2">
+        <div
+          className={
+            (session ? "" : "w-[100%] ") +
+            "flex h-[100%] flex-wrap items-center justify-center gap-2"
+          }
+        >
           {themes.map((theme) => (
             <button
               key={theme.name}
@@ -33,10 +38,9 @@ export function Navbar() {
               {theme.name}
             </button>
           ))}
-
           {!session ? (
             <button
-              role="signInButon"
+              className="!bg-green-200 !text-black hover:!bg-green-500 hover:!text-green-50"
               onClick={(e) => {
                 e.preventDefault()
                 signIn()

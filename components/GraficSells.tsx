@@ -96,7 +96,6 @@ const GraficoVentas = () => {
         <p>Cargando...</p>
       ) : (
         <>
-          {window.innerHeight}
           <canvas
             style={{
               maxHeight: window.innerHeight - 305 + "px", // Establece la altura máxima
