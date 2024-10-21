@@ -1,24 +1,51 @@
 import { signIn, signOut, useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { useState } from "react"
+import LoaderPage from "./loader"
 const themes = [{ name: "Light" }, { name: "Dark" }, { name: "Gold" }]
 
 export function Navbar() {
   const { data: session } = useSession()
   const { setTheme } = useTheme()
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
 
+  const handleNavigation = (url: string) => {
+    setLoading(true)
+    router.push(url).finally(
+      () =>
+        setTimeout(() => {
+          setLoading(false)
+        }, 500) // user feedback
+    )
+  }
   return (
     <>
+      <LoaderPage loading={loading} />
       <nav className="flex flex-col flex-wrap items-center justify-between gap-2 pb-4 pl-[120px] pr-[120px] pt-4 shadow-lg sm:flex-row">
         {session ? (
           <div className="flex h-[100%] items-center gap-2">
-            <Link className="hover: h-min font-semibold" href="/">
+            <Link
+              className="hover: h-min font-semibold"
+              onClick={() => handleNavigation("/")}
+              href="/"
+            >
               Home
             </Link>
-            <Link className="hover: h-min font-semibold" href="/products">
+            <Link
+              className="hover: h-min font-semibold"
+              onClick={() => handleNavigation("/products")}
+              href="/products"
+            >
               Productos
             </Link>
-            <Link className="h-min font-semibold" href="/profile">
+            <Link
+              className="h-min font-semibold"
+              onClick={() => handleNavigation("/profile")}
+              href="/profile"
+            >
               Perfil
             </Link>
           </div>

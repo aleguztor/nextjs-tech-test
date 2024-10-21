@@ -1,3 +1,4 @@
+import LoaderPage from "@/components/loader"
 import { Producto } from "@prisma/client"
 import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
@@ -93,11 +94,7 @@ const Page = ({
   }, [router])
   return (
     <>
-      {loading ? (
-        <div className="fixed z-40 flex h-full w-full items-center justify-center bg-black opacity-70">
-          <p className="text-2xl text-white"> Cargando...</p>
-        </div>
-      ) : null}
+      {loading ? <LoaderPage loading={loading} /> : null}
       <div className="md:m-10">
         <div className="containerApp">
           <h1>Lista de products</h1>
