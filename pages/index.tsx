@@ -1,13 +1,43 @@
 import GraficoVentas from "@/components/GraficSells"
+import { useNotes } from "@/hook/useNotes"
 import { signIn, useSession } from "next-auth/react"
 import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 export default function Home() {
   const { data: session } = useSession()
   const { theme } = useTheme()
+  const [isNotesOpen, setIsNotesOpen] = useState(true)
+  const nVentas = useNotes((state) => state.nVentas)
+  const setNVentas = useNotes((state) => state.setNVentas)
+
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [dragging, setDragging] = useState(false)
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 })
+
+  const handleMouseDown = (e: { clientX: number; clientY: number }) => {
+    setDragging(true)
+    setStartPos({
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    })
+  }
+
+  const handleMouseMove = (e: { clientX: number; clientY: number }) => {
+    if (dragging) {
+      setPosition({
+        x: e.clientX - startPos.x,
+        y: e.clientY - startPos.y,
+      })
+    }
+  }
+
+  const handleMouseUp = () => {
+    setDragging(false)
+  }
   return !session ? (
     <>
-      <div className="w-100 flex h-[90vh] flex-col items-center justify-center gap-2">
+      <div className="w-100 relative flex h-[90vh] flex-col items-center justify-center gap-2">
         <h2>
           <strong>Hello!</strong>
         </h2>

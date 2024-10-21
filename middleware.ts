@@ -12,7 +12,6 @@ export async function middleware(req: NextRequest) {
       : "next-auth.session-token"
 
   const session = cookies.get(authObtain)?.value
-  console.log(session)
   if (!session) {
     return NextResponse.redirect(new URL("/", req.url))
   }

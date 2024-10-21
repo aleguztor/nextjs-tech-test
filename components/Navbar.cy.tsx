@@ -10,7 +10,6 @@ describe("<Navbar />", () => {
     setConfig({
       stylesheet: "../../global.css",
     })
-    console.log("HCE ESTO")
   })
   it("Shows the navbar when you are not signed", () => {
     cy.mount(

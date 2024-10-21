@@ -7,10 +7,16 @@
     background: var(--background-gradient);
     @apply flex-col bg-[--backgroundcolor] p-10 shadow-md md:m-10;
   }
+  textarea {
+    @apply min-h-16 w-full p-4;
+  }
 }
-* {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
   button {
     border: none;
   }

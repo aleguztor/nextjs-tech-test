@@ -7,10 +7,16 @@
     background: var(--background-gradient);
     @apply flex-col bg-[--backgroundcolor] p-10 shadow-md md:m-10;
   }
+  textarea {
+    @apply min-h-16 w-full p-4;
+  }
 }
-* {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
   button {
     border: none;
   }
@@ -46,13 +52,14 @@ h6 {
     rgba(0, 30, 48, 0.144) 0%,
     rgba(255, 255, 255, 1) 100%
   );
+  --terciary-color: rgb(50, 50, 218);
   --backgroundcolor: rgb(248, 248, 248);
   --foreground: #171717;
   a {
     font-weight: bold;
   }
   a:hover {
-    color: rgb(50, 50, 218);
+    color: var(--terciary-color);
   }
   nav {
     background-color: rgb(255, 255, 255);
@@ -91,7 +98,7 @@ body {
 
 [data-theme="dark"] {
   --background-gradient: linear-gradient(-20deg, black);
-
+  --terciary-color: rgb(218, 50, 210);
   --backgroundcolor: black;
   hr {
     border-color: gainsboro;
@@ -100,7 +107,7 @@ body {
     font-weight: bold;
   }
   a:hover {
-    color: rgb(218, 50, 210);
+    color: var(--terciary-color);
   }
   body {
     background-color: rgb(36, 36, 36);
@@ -131,7 +138,7 @@ body {
     rgba(255, 255, 255, 0.418) 0%,
     rgb(248, 234, 153) 100%
   );
-
+  --terciary-color: rgb(15, 179, 51);
   --backgroundcolor: rgb(248, 234, 153);
   hr {
     border-color: black;
@@ -140,7 +147,7 @@ body {
     font-weight: bolder;
   }
   a:hover {
-    color: rgb(15, 179, 51);
+    color: var(--terciary-color);
   }
   nav {
     background-color: rgb(248, 238, 183);

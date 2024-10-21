@@ -10,9 +10,6 @@ describe("<GraficoVentas />", () => {
   })
 
   it("change to other year, this example is 2021", () => {
-    // see: https://on.cypress.io/mounting-react
-    // cy.wait("@getData")
-
     cy.mount(<GraficoVentas />)
     cy.intercept("GET", "/api/ventas?year=2021", {
       statusCode: 200,
@@ -22,19 +19,13 @@ describe("<GraficoVentas />", () => {
     cy.get("select#year option:selected").should("have.text", "2021")
   })
 
-  // it("continue", () => {
-  //   // see: https://on.cypress.io/mounting-react
-  //   cy.mount(<GraficoVentas />)
-  // })
-  // after
-
-  //   it("select other option", () => {
-  //     cy.mount(<GraficoVentas />)
-
-  //     cy.intercept("GET", process.env.NEXTAUTH_URL+`http://localhost:3000/api/ventas?year=2021`, {
-  //       statusCode: 200,
-  //       body: [],
-  //     }).as("getData")
-  //     cy.mount(<GraficoVentas />)
-  //   })
+  it("open notes and text always there when pressing x and reopening", () => {
+    cy.mount(<GraficoVentas />)
+    cy.get("button").click()
+    cy.get("textarea").clear()
+    cy.get("textarea").type("SE MANTIENE EL TEXTO")
+    cy.get("#nVentas > header > button").click()
+    cy.get("button").click()
+    cy.get("textarea").contains("SE MANTIENE EL TEXTO")
+  })
 })

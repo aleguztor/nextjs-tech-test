@@ -45,7 +45,6 @@ export const authOptions = {
       return session
     },
     async jwt({ user, token }) {
-      console.log()
       if (user) token.sub = user.id
       return token
     },
