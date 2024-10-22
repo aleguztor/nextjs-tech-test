@@ -189,7 +189,7 @@ const GraficoVentas = () => {
         <>
           <canvas
             style={{
-              maxHeight: window.innerHeight - 305 + "px", // Establece la altura máxima
+              maxHeight: window.innerHeight - 345 + "px", // Establece la altura máxima
               width: "100%", // Ajusta el ancho según sea necesario
             }}
             ref={canvasRef}
