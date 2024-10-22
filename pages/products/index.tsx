@@ -1,4 +1,5 @@
 import LoaderPage from "@/components/loader"
+import useProductStar from "@/hook/useProductStar"
 import { Producto } from "@prisma/client"
 import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
@@ -9,12 +10,6 @@ interface PaginatedResponse {
   productos: ProductoConCategoria[]
   totalPages: number
   currentPage: number
-}
-
-interface ProductoConCategoria extends Producto {
-  categoria: {
-    nombre: string
-  }
 }
 
 interface ProductoConCategoria extends Producto {
@@ -47,6 +42,8 @@ const Page = ({
     minPrice,
     maxPrice,
   })
+
+  const { setIdproduct, product } = useProductStar()
   const router = useRouter()
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -97,44 +94,50 @@ const Page = ({
       {loading ? <LoaderPage loading={loading} /> : null}
       <div className="md:m-10">
         <div className="containerApp">
-          <h1>Lista de products</h1>
+          <h1>Lista de products </h1>
+          <h5 className="mt-[-20px]">Elige el mejor</h5>
           <br />
           <form
             onSubmit={(e) => {
               e.preventDefault()
               window.location.href = `/products?page=${currentPage}&minPrice=${filters.minPrice || ""}&maxPrice=${filters.maxPrice || ""}`
             }}
-            className="mb-5 flex flex-wrap items-center justify-end gap-4"
+            className="mb-5 flex flex-wrap items-center justify-between gap-4"
           >
-            <h4>
-              <strong>Filtros</strong>
-            </h4>
+            <h3>
+              El mejor: <strong> {product.nombre}</strong>
+            </h3>
+            <div className="flex flex-wrap gap-4">
+              <h4>
+                <strong>Filtros</strong>
+              </h4>
 
-            <input
-              className="w-[100px] rounded-md pl-2 pr-2"
-              type="number"
-              value={filters.minPrice}
-              onChange={(e) =>
-                setFilters({
-                  minPrice: e.currentTarget.valueAsNumber,
-                  maxPrice: filters.maxPrice,
-                })
-              }
-              placeholder="Min price"
-            />
-            <input
-              className="w-[105px] rounded-md pl-2 pr-2"
-              type="number"
-              value={filters.maxPrice}
-              onChange={(e) =>
-                setFilters({
-                  maxPrice: e.currentTarget.valueAsNumber,
-                  minPrice: filters.minPrice,
-                })
-              }
-              placeholder="Max price"
-            />
-            <button type="submit">Submit</button>
+              <input
+                className="w-[100px] rounded-md pl-2 pr-2"
+                type="number"
+                value={filters.minPrice}
+                onChange={(e) =>
+                  setFilters({
+                    minPrice: e.currentTarget.valueAsNumber,
+                    maxPrice: filters.maxPrice,
+                  })
+                }
+                placeholder="Min price"
+              />
+              <input
+                className="w-[105px] rounded-md pl-2 pr-2"
+                type="number"
+                value={filters.maxPrice}
+                onChange={(e) =>
+                  setFilters({
+                    maxPrice: e.currentTarget.valueAsNumber,
+                    minPrice: filters.minPrice,
+                  })
+                }
+                placeholder="Max price"
+              />
+              <button type="submit">Submit</button>
+            </div>
           </form>
 
           {products.length > 0 ? (
@@ -163,8 +166,9 @@ const Page = ({
 
                   <div>
                     <li
+                      onClick={() => setIdproduct(producto.id_producto)}
                       key={producto.id_producto}
-                      className="grid grid-cols-3 items-center pb-2 pt-2"
+                      className="grid cursor-pointer grid-cols-3 items-center pb-2 pt-2 hover:bg-gray-300"
                     >
                       <p className="place-content-center">{producto.nombre}</p>
                       <p className="place-content-center text-center">

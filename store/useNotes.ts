@@ -19,7 +19,7 @@ export const useNotes = create(
     }),
     {
       name: "notes",
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => localStorage),
     }
   )
 )
