@@ -15,11 +15,7 @@ CYPRESS_PASS_GITHUB_TEST=""
 Instalamos las dependecias
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm i
 
 ```
 
