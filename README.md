@@ -31,9 +31,13 @@ https://next-js-test-linkdin.netlify.app/
 
 Ejemplo: https://next-js-test-linkdin.netlify.app/api/ventas?year=2022
 
-- GET /api/productos/paginated?page=xx&limit=xx
+- GET /api/productos/paginated?page=xx&limit=xx (se puede añadir minPrice & maxPrice para filtrar)
 
-Ejemplo: https://next-js-test-linkdin.netlify.app/api/productos/paginated?page=1&limit=10
+Ejemplo: https://next-js-test-linkdin.netlify.app/api/productos/paginated?page=1&limit=10&minPrice=80
+
+- GET /api/productos/{id}
+
+Ejemplo: https://next-js-test-linkdin.netlify.app/api/1
 
 # Architecture Overview de la App
 

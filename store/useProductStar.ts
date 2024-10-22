@@ -14,7 +14,7 @@ export const useProductStarStorage = create(
         set((state) => ({ ...state, idproduct })),
     }),
     {
-      name: "",
+      name: "product-star",
       storage: createJSONStorage(() => localStorage),
     }
   )

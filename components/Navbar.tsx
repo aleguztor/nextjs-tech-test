@@ -9,18 +9,19 @@ const themes = [{ name: "Light" }, { name: "Dark" }, { name: "Gold" }]
 export function Navbar() {
   const { data: session } = useSession()
   const { setTheme } = useTheme()
+
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const handleNavigation = (url: string) => {
     setLoading(true)
-    router.push(url).finally(
-      () =>
-        setTimeout(() => {
-          setLoading(false)
-        }, 500) // user feedback
+    router.push(url).finally(() =>
+      setTimeout(() => {
+        setLoading(false)
+      }, 500)
     )
   }
+
   return (
     <>
       <LoaderPage loading={loading} />

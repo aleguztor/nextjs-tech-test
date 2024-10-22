@@ -15,17 +15,19 @@ export default function useProductStar() {
   })
 
   useEffect(() => {
-    const fetchProducto = async () => {
-      let data: Producto
-      try {
-        const response = await fetch(`/api/productos/${idproduct}`)
-        data = await response.json()
-      } catch (error) {
-        throw new Error("Error al obtener el producto")
+    if (idproduct) {
+      const fetchProducto = async () => {
+        let data: Producto
+        try {
+          const response = await fetch(`/api/productos/${idproduct}`)
+          data = await response.json()
+        } catch (error) {
+          throw new Error("Error al obtener el producto")
+        }
+        return data
       }
-      return data
+      fetchProducto().then((res) => setproduct(res))
     }
-    fetchProducto().then((res) => setproduct(res))
   }, [idproduct])
 
   return { product, setIdproduct }
