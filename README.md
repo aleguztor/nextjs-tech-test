@@ -1,6 +1,35 @@
 # INSTRUCTION
 
-First, run the development server:
+First, write in your local new document .env.local and configure with your values
+
+```
+GITHUB_ID=""
+GITHUB_SECRET=""
+NEXTAUTH_SECRET="GENERATE THIS"
+NEXTAUTH_URL="http://localhost:3000"
+DATABASE_URL="postgresql://user:pass@localhost:5432/next-js?schema=SCHEMA"
+CYPRESS_EMAIL_GITHUB_TEST=""
+CYPRESS_PASS_GITHUB_TEST=""
+```
+
+Instalamos las dependecias
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+
+```
+
+Configuramos ahora prisma para desplegar nuestro esquema
+
+```bash
+npx prisma generate
+```
+
+Después ejecuta el siguiente comando de preferencia para ver nuestro proyecto:
 
 ```bash
 npm run dev
